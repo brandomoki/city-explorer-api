@@ -12,13 +12,12 @@ async function getWeather(request, response, next) {
     // AXIOS CALL *********************************************************************
     const weatherResponse = await axios.get(url);
 
-    let dataToGroom = weatherResponse.data;
-    let dataToSend = dataToGroom.data.map(wetObj => {
+    let dataToSend = weatherResponse.data.data.map(wetObj => {
       return new Forecast(wetObj);
 
     });
     response.status(200).send(dataToSend);
-    console.log('^^^^^^^^^^^^^^^^^^^^^', weatherResponse);
+    console.log('^^^^^^^^^^^^^^^^^^^^^', getWeather);
 
     // console.log(weatherResponse);
   } catch (error) {
@@ -37,3 +36,5 @@ class Forecast {
   }
 }
 module.exports = getWeather;
+
+
