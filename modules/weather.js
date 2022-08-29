@@ -12,10 +12,8 @@ async function getWeather(request, response, next) {
     // AXIOS CALL *********************************************************************
     const weatherResponse = await axios.get(url);
 
-    let dataToSend = weatherResponse.data.data.map(wetObj => {
-      return new Forecast(wetObj);
+    let dataToSend = weatherResponse.data.data.map(wetObj => new Forecast(wetObj));
 
-    });
     response.status(200).send(dataToSend);
     console.log('^^^^^^^^^^^^^^^^^^^^^', getWeather);
 
